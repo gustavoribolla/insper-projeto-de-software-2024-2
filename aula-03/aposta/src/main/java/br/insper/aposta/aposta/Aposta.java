@@ -20,7 +20,5 @@ public class Aposta {
     private LocalDateTime dataAposta;
     private String resultado;  // EMPATE, VITORIA_MANDANTE, VITORIA_VISITANTE
     private Double valor;
-
     private String status; // GANHOU, PERDEU, REALIZADA
-
 }
