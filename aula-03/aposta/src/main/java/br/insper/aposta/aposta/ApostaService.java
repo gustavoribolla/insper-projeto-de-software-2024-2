@@ -19,7 +19,7 @@ public class ApostaService {
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<RetornarPartidaDTO> partida = restTemplate.getForEntity(
-                "http://localhost:8080/partida/" + aposta.getIdPartida(),
+                "http://3.85.83.193:8080/partida/" + aposta.getIdPartida(),
                 RetornarPartidaDTO.class);
 
         if (partida.getStatusCode().is2xxSuccessful())  {
@@ -39,7 +39,7 @@ public class ApostaService {
         if ("REALIZADA".equals(aposta.getStatus())) {
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<RetornarPartidaDTO> partida = restTemplate.getForEntity(
-                    "http://localhost:8080/partida/" + aposta.getIdPartida(),
+                    "http://3.85.83.193:8080/partida/" + aposta.getIdPartida(),
                     RetornarPartidaDTO.class);
 
             if (partida.getStatusCode().is2xxSuccessful()) {
