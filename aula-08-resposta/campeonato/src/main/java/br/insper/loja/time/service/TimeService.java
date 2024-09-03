@@ -38,5 +38,4 @@ public class TimeService {
         }
         throw new TimeNaoEncontradoException("Time " + id + " não encontrado");
     }
-
 }

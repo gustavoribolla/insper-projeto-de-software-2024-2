@@ -87,5 +87,83 @@ public class TimeServiceTests {
 
     }
 
+    @Test
+    public void testCadastrarTimeWithValidData() {
+        Time time = new Time("Time A", "time-a", "Estádio A", "SP");
 
+        Mockito.when(timeRepository.save(time)).thenReturn(time);
+
+        Time timeSalvo = timeService.cadastrarTime(time);
+
+        Assertions.assertNotNull(timeSalvo);
+        Assertions.assertEquals("Time A", timeSalvo.getNome());
+        Assertions.assertEquals("time-a", timeSalvo.getIdentificador());
+    }
+
+    @Test
+    public void testCadastrarTimeWithInvalidData() {
+        Time time = new Time("", "time-a", "Estádio A", "SP");
+
+        Assertions.assertThrows(RuntimeException.class,
+                () -> timeService.cadastrarTime(time));
+    }
+
+    @Test
+    public void testListarTimesWhenEstadoHasNoTeams() {
+        Mockito.when(timeRepository.findByEstado("RJ")).thenReturn(new ArrayList<>());
+
+        List<Time> times = timeService.listarTimes("RJ");
+
+        Assertions.assertTrue(times.isEmpty());
+    }
+
+    @Test
+    public void testListarTimesWhenEstadoHasMultipleTeams() {
+        List<Time> lista = new ArrayList<>();
+
+        Time time1 = new Time("Time A", "time-a", "Estádio A", "SP");
+        Time time2 = new Time("Time B", "time-b", "Estádio B", "SP");
+
+        lista.add(time1);
+        lista.add(time2);
+
+        Mockito.when(timeRepository.findByEstado("SP")).thenReturn(lista);
+
+        List<Time> times = timeService.listarTimes("SP");
+
+        Assertions.assertEquals(2, times.size());
+        Assertions.assertEquals("Time A", times.get(0).getNome());
+        Assertions.assertEquals("Time B", times.get(1).getNome());
+    }
+
+    @Test
+    public void testGetTimeWithInvalidId() {
+        Mockito.when(timeRepository.findById(999)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(TimeNaoEncontradoException.class,
+                () -> timeService.getTime(999));
+    }
+
+    @Test
+    public void testCadastrarTimeWithEmptyIdentificador() {
+        Time time = new Time("Time B", "", "Estádio B", "SP");
+
+        Assertions.assertThrows(RuntimeException.class,
+                () -> timeService.cadastrarTime(time));
+    }
+
+    @Test
+    public void testCadastrarTimeWithDuplicateIdentificador() {
+        Time time1 = new Time("Time A", "time-a", "Estádio A", "SP");
+
+        Time time2 = new Time("Time B", "time-a", "Estádio B", "SP");
+
+        // Stubbing importante: simulando uma exceção para identificadores duplicados
+        Mockito.when(timeRepository.save(time2))
+                .thenThrow(new RuntimeException("Identificador já existe"));
+
+        // Verificação: esperando que uma exceção seja lançada ao tentar cadastrar um time com identificador duplicado
+        Assertions.assertThrows(RuntimeException.class,
+                () -> timeService.cadastrarTime(time2));
+    }
 }

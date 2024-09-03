@@ -34,5 +34,4 @@ public class TimeController {
         return timeService.cadastrarTime(time);
     }
 
-
 }

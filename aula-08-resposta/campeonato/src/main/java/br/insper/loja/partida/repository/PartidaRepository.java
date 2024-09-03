@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface PartidaRepository extends JpaRepository<Partida, Integer> {
 
-
 }

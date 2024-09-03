@@ -37,5 +37,4 @@ public class PartidaController {
     public RetornarPartidaDTO editarPartida(@RequestBody EditarPartidaDTO partida, @PathVariable Integer id) {
         return partidaService.editarPartida(partida, id);
     }
-
 }

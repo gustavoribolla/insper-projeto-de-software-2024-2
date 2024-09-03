@@ -79,5 +79,4 @@ public class PartidaService {
         }
         throw new PartidaNaoEncontradaException("Partida não encontrada");
     }
-
 }

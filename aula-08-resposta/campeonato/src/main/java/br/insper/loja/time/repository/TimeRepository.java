@@ -10,6 +10,4 @@ import java.util.List;
 public interface TimeRepository extends JpaRepository<Time, Integer> {
 
     public List<Time> findByEstado(String estado);
-
-
 }

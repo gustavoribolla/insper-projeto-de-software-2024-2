@@ -24,9 +24,5 @@ public class Partida {
     private Integer placarMandante;
 
     private Integer placarVisitante;
-
-
     private String status;
-
-
 }
