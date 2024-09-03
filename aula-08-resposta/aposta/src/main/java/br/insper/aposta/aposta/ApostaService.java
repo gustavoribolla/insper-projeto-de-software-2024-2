@@ -72,7 +72,7 @@ public class ApostaService {
                     aposta.setStatus("GANHOU");
                 }
 
-                if (aposta.getResultado().equals("EMPATE") && partidaDTO.isVitoriaVisitante()) {
+                if (aposta.getResultado().equals("VITORIA_VISITANTE") && partidaDTO.isVitoriaVisitante()) {
                     aposta.setStatus("GANHOU");
                 }
 
