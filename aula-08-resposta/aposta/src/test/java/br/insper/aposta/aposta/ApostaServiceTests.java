@@ -42,6 +42,4 @@ public class ApostaServiceTests {
         Assertions.assertNotNull(apostaRetorno);
 
     }
-
-
 }
