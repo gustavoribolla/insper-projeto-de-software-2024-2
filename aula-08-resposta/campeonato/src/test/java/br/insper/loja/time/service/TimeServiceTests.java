@@ -158,11 +158,9 @@ public class TimeServiceTests {
 
         Time time2 = new Time("Time B", "time-a", "Estádio B", "SP");
 
-        // Stubbing importante: simulando uma exceção para identificadores duplicados
         Mockito.when(timeRepository.save(time2))
                 .thenThrow(new RuntimeException("Identificador já existe"));
 
-        // Verificação: esperando que uma exceção seja lançada ao tentar cadastrar um time com identificador duplicado
         Assertions.assertThrows(RuntimeException.class,
                 () -> timeService.cadastrarTime(time2));
     }
