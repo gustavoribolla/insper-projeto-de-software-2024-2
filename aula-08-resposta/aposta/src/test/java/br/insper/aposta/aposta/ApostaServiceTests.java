@@ -14,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,15 +44,12 @@ public class ApostaServiceTests {
         List<Aposta> resultado = apostaService.listar();
 
         Assertions.assertEquals(2, resultado.size());
-
-
     }
 
     @Test
     public void testSalvarApostaWhenStatusCodeIsSuccessful() {
         Aposta aposta = new Aposta();
         aposta.setIdPartida(1);
-        //como eu testo o aposta setID?
 
         RetornarPartidaDTO retornarPartidaDTO = new RetornarPartidaDTO();
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
@@ -67,7 +63,6 @@ public class ApostaServiceTests {
         Assertions.assertNotNull(apostaRetorno);
         Assertions.assertNotNull(apostaRetorno.getDataAposta());
         Assertions.assertNotNull(apostaRetorno.getId());
-
     }
 
     @Test
@@ -106,7 +101,6 @@ public class ApostaServiceTests {
 
         Aposta apostaRetorno = apostaService.getAposta("1");
         Assertions.assertNotNull(apostaRetorno);
-
     }
 
     @Test public void testGetApostaWhenApostaIsNotNullStatusPartidaStatusIsNull() {
@@ -138,7 +132,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setStatus("AGENDADA");
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
 
-
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
 
@@ -160,7 +153,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setPlacarMandante(1);
         retornarPartidaDTO.setPlacarVisitante(1);
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
-
 
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
@@ -186,7 +178,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setPlacarVisitante(2);
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
 
-
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
         Mockito.when(apostaRepository.save(aposta)).thenReturn(aposta);
@@ -210,7 +201,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setPlacarMandante(2);
         retornarPartidaDTO.setPlacarVisitante(1);
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
-
 
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
@@ -236,7 +226,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setPlacarVisitante(1);
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
 
-
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
         Mockito.when(apostaRepository.save(aposta)).thenReturn(aposta);
@@ -260,7 +249,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setPlacarMandante(1);
         retornarPartidaDTO.setPlacarVisitante(2);
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
-
 
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
@@ -286,7 +274,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setPlacarVisitante(1);
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
 
-
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
         Mockito.when(apostaRepository.save(aposta)).thenReturn(aposta);
@@ -310,7 +297,6 @@ public class ApostaServiceTests {
         retornarPartidaDTO.setPlacarMandante(1);
         retornarPartidaDTO.setPlacarVisitante(2);
         ResponseEntity<RetornarPartidaDTO> responseEntity = new ResponseEntity<>(retornarPartidaDTO, HttpStatus.OK);
-
 
         Mockito.when(apostaRepository.findById("1")).thenReturn(Optional.of(aposta));
         Mockito.when(partidaService.getPartida(1)).thenReturn(responseEntity);
